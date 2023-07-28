@@ -1,0 +1,172 @@
+Lab 3
+
+//Name: Stephanie Caliwag
+//Date: 13/10/20
+//Description: Lvel 2. RGB LED
+
+int rotationPin = A0; //The rotation sensor is plugged into pin A0 of the Arduino.
+int data=0; //Used to store data from sensor.
+int RGBRedPin = 9; // red LED connected to 9 Pin of the Arduino
+int RGBGreenPin = 11; // green LED connected to 11 Pin of the Arduino
+int RGBBluePin = 10; // blue LED connected to 10 Pin of the Arduino
+int waitTime = 5000; // sets amount of wait time when the colour changes
+
+
+	void setup() { //The Setup function runs once.
+	Serial.begin(9600); //This will enable the Arduino to send data to the Serial monitor
+	pinMode(rotationPin,INPUT);      
+      pinMode(RGBRedPin,OUTPUT); //red setup output
+      pinMode(RGBGreenPin,OUTPUT); // green setup output
+      pinMode(RGBBluePin, OUTPUT); // blue setup output 
+    
+    }
+      
+	void loop() { //The loop function runs forever.
+	waitTime = analogRead(rotationPin); //Read the value from the light sensor and store it in the light variable	
+	Serial.print("Rotation value =");
+	Serial.println(waitTime); //Print the data to the serial port.
+	//delay (1000); 			//Wait 1 second (1000mS) before running again.
+      
+      //Red
+      digitalWrite(RGBRedPin, HIGH);// red on
+      delay(waitTime); //wait for 5 seconds
+      digitalWrite(RGBRedPin, LOW);// red off
+        
+        //Green
+        digitalWrite(RGBGreenPin, HIGH); // green on
+		delay(waitTime); //Wait for 5 seconds
+		digitalWrite(RGBGreenPin, LOW); // green off
+         
+          //Blue
+          digitalWrite(RGBBluePin, HIGH);// blue on
+          delay(waitTime); // wait for 5 seconds
+      	  digitalWrite(RGBBluePin, LOW); // blue off
+}
+
+//Name: Stephanie Caliwag
+//Date: 13/10/20
+//Description: Level 4. Pattern Colours
+
+int RGBRedPin = 9; // red LED connected to 9 Pin of the Arduino
+int RGBGreenPin = 11; // green LED connected to 11 Pin of the Arduino
+int RGBBluePin = 10; // blue LED connected to 10 Pin of the Arduino
+int waitTime = 5000; // sets amount of wait time when the colour changes
+int incomingByte = 0; // for incoming serial data
+
+
+	void setup() { //The Setup function runs once.
+	Serial.begin(9600); //This will enable the Arduino to send data to the Serial monitor
+    pinMode(RGBRedPin,OUTPUT); //red setup output
+    pinMode(RGBGreenPin,OUTPUT); // green setup output
+    pinMode(RGBBluePin, OUTPUT); // blue setup output 
+        
+}
+	void loop() {
+    //send data only when recived data 
+    if (Serial.available() > 0) {
+    // read the incoming byte:
+    incomingByte = Serial.read();
+
+    //I say what I got
+    Serial.print("I received: ");
+      Serial.println(incomingByte, DEC);
+    }
+  }   
+      void showColour(int num){
+      if(num == 75){
+      //show red LED
+      digitalWrite(RGBRedPin, HIGH);// red on
+      delay(waitTime); //wait for 5 seconds
+      digitalWrite(RGBRedPin, LOW);// red off
+     }
+      
+      if(num == 60){
+      //show green LED
+      digitalWrite(RGBGreenPin, HIGH); // green on
+	  delay(waitTime); //Wait for 5 seconds
+      digitalWrite(RGBGreenPin, LOW); // green off 
+     }
+      
+      if(num == 55){
+      //show blue LED
+      digitalWrite(RGBBluePin, HIGH);// blue on
+      delay(waitTime); // wait for 5 seconds
+      digitalWrite(RGBBluePin, LOW); // blue off
+     }      
+}
+              
+//Name: Stephanie Caliwag
+//Date: 13/10/20
+//Description: Level 3. ROYGBP
+
+int rotationPin = A0; //The rotation sensor is plugged into pin A0 of the Arduino.
+int data=0; //Used to store data from sensor.
+int RGBRedPin = 9; // red LED connected to 9 Pin of the Arduino
+int RGBGreenPin = 11; // green LED connected to 11 Pin of the Arduino
+int RGBBluePin = 10; // blue LED connected to 10 Pin of the Arduino
+int waitTime = 5000; // sets amount of wait time when the colour changes
+
+
+	void setup() { //The Setup function runs once.
+	Serial.begin(9600); //This will enable the Arduino to send data to the Serial monitor
+	pinMode(rotationPin,INPUT);      
+      pinMode(RGBRedPin,OUTPUT); //red setup output
+      pinMode(RGBGreenPin,OUTPUT); // green setup output
+      pinMode(RGBBluePin, OUTPUT); // blue setup output 
+      
+    
+    }
+      
+	void loop() { //The loop function runs forever.
+	waitTime = analogRead(rotationPin); //Read the value from the light sensor and store it in the light variable	
+	Serial.print("Rotation value =");
+	Serial.println(waitTime); //Print the data to the serial port.
+	//delay (1000); 			//Wait 1 second (1000mS) before running again.
+      
+      
+      if(waitTime >0 && waitTime <170){
+      digitalWrite(RGBRedPin, HIGH);//RED LED
+        //turn on red
+      }
+      
+      		//Red
+      		digitalWrite(RGBRedPin, HIGH);// red on
+      		delay(waitTime); //wait for 5 seconds
+      		digitalWrite(RGBRedPin, LOW);// red off
+      
+      //White(Red + green + blue)
+      digitalWrite(RGBRedPin, HIGH);//red on
+      digitalWrite(RGBGreenPin, HIGH); //green on
+      digitalWrite(RGBBluePin, HIGH);// blue on
+      delay(waitTime);
+	  digitalWrite(RGBRedPin, LOW); // red off
+	  digitalWrite(RGBGreenPin, LOW); // green off
+      digitalWrite(RGBBluePin,LOW); // blue off
+      		
+      		//Yellow (Red + Green)
+			digitalWrite(RGBRedPin, HIGH); //red on
+			digitalWrite(RGBGreenPin, HIGH); // green on
+			delay(waitTime); //Wait for 5 seconds
+			digitalWrite(RGBRedPin, LOW); // red off
+			digitalWrite(RGBGreenPin, LOW); // green off
+      		
+        //Green
+        digitalWrite(RGBGreenPin, HIGH); // green on
+		delay(waitTime); //Wait for 5 seconds
+		digitalWrite(RGBGreenPin, LOW); // green off
+         
+        	//Blue
+        	digitalWrite(RGBBluePin, HIGH);// blue on
+       		delay(waitTime); // wait for 5 seconds
+      		digitalWrite(RGBBluePin, LOW); // blue off
+      
+      //Magenta (red + blue)
+      digitalWrite(RGBRedPin, HIGH);//red on
+      digitalWrite(RGBBluePin, HIGH);// blue on
+      delay(waitTime); // wait for 5 seconds
+      digitalWrite(RGBRedPin, LOW);// red off
+      digitalWrite(RGBBluePin, LOW); // blue off
+
+}
+              
+
